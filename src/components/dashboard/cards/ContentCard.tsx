@@ -1,8 +1,6 @@
 import { GradientTextStyles } from "@/components/ui/gradientText";
 import { TrendingUp, Users, Zap } from "lucide-react"
 
-import { memo } from 'react'
-
 interface ContentCardProps {
     icon: React.ReactNode;
     title: React.ReactNode;
