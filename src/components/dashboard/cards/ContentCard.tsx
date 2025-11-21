@@ -27,7 +27,7 @@ const DATA: ContentCardProps[] = [
 
 export const ContentCard = () => {
     return (
-        <section className="mb-20">
+        <section className="mb-16">
             <h2 className="text-4xl font-bold text-white text-center mb-12">
                 ¿Por qué usar <span className={`${GradientTextStyles}`}>Luzzia</span>?
             </h2>
