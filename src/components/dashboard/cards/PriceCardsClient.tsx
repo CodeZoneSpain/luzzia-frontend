@@ -57,34 +57,64 @@ export function PriceCardsClient({ serverData, dailyPrices }: PriceCardsClientPr
   ];
 
   // Card optimizada
-  const borderColor = "border-[1px] border-violet-200";
   const bgColor = "bg-gradient-to-br from-slate-800 via-slate-900 to-gray-900 border-slate-700/50";
+  const borderColor = "border border-slate-700/50";
   const titleColor = "text-white";
+  
   return (
     <section className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cardsData.map((card) => {
           const priceColor = card.id === 'lowest' ? "text-emerald-500" : card.id === 'highest' ? "text-red-500" : "text-sky-400";
+          const badgeColor = card.id === 'lowest' ? "bg-emerald-500" : card.id === 'highest' ? "bg-red-500" : "bg-sky-400";
+          const hourText = card.id === 'current' ? `${currentHour.toString().padStart(2, '0')}:00` : card.subtitle.split(': ')[1];
+          
           return (
-            <Card 
+            <Card
               key={card.id}
               className={`
                 relative overflow-hidden transition-all duration-300 
-                hover:scale-[1.03] hover:shadow-2xl
+                hover:scale-[1.02] hover:shadow-2xl
                 ${bgColor} ${borderColor} rounded-2xl
                 focus-within:ring-2 focus-within:ring-white focus-within:ring-offset-2
               `}
               role="article"
               aria-labelledby={`price-card-${card.id}-title`}
             >
-              <CardContent className="p-7 space-y-3 flex flex-col items-center justify-center text-center">
-                <div className={`size-14 rounded-full bg-slate-800 flex items-center justify-center mb-2 transition-transform duration-300 hover:scale-110`}>
+              {/* Time Badge */}
+              <div className={`absolute top-4 right-4 ${badgeColor} text-white font-bold rounded px-2 py-1 text-md z-10`}>
+                {hourText}
+              </div>
+
+              <CardContent className="p-7 pt-12 space-y-4 flex flex-col items-center justify-center text-center h-full">
+                {/* Icon */}
+                <div className="size-12 rounded-full bg-slate-700/50 flex items-center justify-center transition-transform duration-300 hover:scale-110">
                   {card.icon}
                 </div>
-                <h3 id={`price-card-${card.id}-title`} className={`text-2xl font-extrabold mb-2 ${titleColor}`}>{card.title}</h3>
-                <div className={`text-2xl font-bold mb-1 ${priceColor}`}>{card.price}</div>
-                {card.subtitle && <div className={`text-base text-white/80 mb-1`}>{card.subtitle}</div>}
-                {card.percent && <div className={`text-xs font-semibold text-white/60`}>{card.percent}</div>}
+
+                {/* Title */}
+                <h3 id={`price-card-${card.id}-title`} className={`text-lg font-semibold ${titleColor}`}>
+                  {card.title}
+                </h3>
+
+                {/* Price */}
+                <div className={`text-4xl font-bold ${priceColor}`}>
+                  {card.price}
+                </div>
+
+                {/* Subtitle */}
+                {card.subtitle && (
+                  <div className="text-xs text-slate-400">
+                    {card.subtitle.split(': ')[0]}: <span className="text-slate-300">{hourText}</span>
+                  </div>
+                )}
+
+                {/* Percent */}
+                {card.percent && (
+                  <div className="text-xs font-semibold text-slate-500">
+                    {card.percent}
+                  </div>
+                )}
               </CardContent>
             </Card>
           );
