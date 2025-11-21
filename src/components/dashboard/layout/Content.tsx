@@ -18,9 +18,7 @@ export function DashboardContent() {
     // <div className=" bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
     <div className="container min-h-screen mx-auto p-4">
       {/* Hero Section - Siempre visible, datos opcionales */}
-      <section className="mb-16">
         <Hero stats={stats} />
-      </section>
 
       {/* Value Proposition Section - Cards estilo ¿Qué es Luzzia? */}
       <ContentCard />
@@ -32,16 +30,14 @@ export function DashboardContent() {
             <TrendingUp className="w-8 h-8 text-white" />
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-2">
-            Precios de la Electricidad
+            Precio de la luz hoy por horas (en tiempo real)
           </h2>
           <p className="text-lg text-slate-300 max-w-2xl mx-auto">
-            Consulta los precios actuales y históricos del mercado eléctrico español. Datos oficiales actualizados cada hora.
+            Datos oficiales de OMIE y Red Eléctrica de España (REE). Consulta el precio del kWh hoy y aprovecha las horas más baratas para tus 
           </p>
         </div>
         <PriceChartClientWrapper />
       </section>
-
-
 
       {/* Newsletter Section - Progressive Loading (Client Component) */}
       <DashboardContentClient />
