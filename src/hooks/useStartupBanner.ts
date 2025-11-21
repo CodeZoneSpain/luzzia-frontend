@@ -7,6 +7,7 @@ interface UseStartupBannerReturn {
   handleClose: () => void
   prefersReducedMotion: boolean
   wasDismissedBefore: boolean
+  isMobile: boolean
 }
 
 export function useStartupBanner(): UseStartupBannerReturn {
@@ -14,11 +15,13 @@ export function useStartupBanner(): UseStartupBannerReturn {
   const [currentStat, setCurrentStat] = useState(0)
   const [wasDismissedBefore, setWasDismissedBefore] = useState(false)
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   // Refs para evitar memory leaks y closures innecesarias
   const showTimerRef = useRef<NodeJS.Timeout | null>(null)
   const statTimerRef = useRef<NodeJS.Timeout | null>(null)
   const mediaQueryRef = useRef<MediaQueryList | null>(null)
+  const mobileQueryRef = useRef<MediaQueryList | null>(null)
   const isInitializedRef = useRef(false)
 
   // Inicializar banner - Effect 1: Check localStorage y media queries
@@ -44,11 +47,27 @@ export function useStartupBanner(): UseStartupBannerReturn {
           setPrefersReducedMotion(e.matches)
         }
 
-        // Usar addEventListener en lugar de addListener (deprecado)
         mediaQuery.addEventListener('change', handleChange)
         
         return () => {
           mediaQuery.removeEventListener('change', handleChange)
+        }
+      }
+
+      // Detectar mobile para desabilitar animaciones
+      if (STARTUP_BANNER_CONFIG.DISABLE_ANIMATIONS_ON_MOBILE) {
+        const mobileQuery = window.matchMedia(`(max-width: ${STARTUP_BANNER_CONFIG.MOBILE_BREAKPOINT}px)`)
+        setIsMobile(mobileQuery.matches)
+        mobileQueryRef.current = mobileQuery
+
+        const handleMobileChange = (e: MediaQueryListEvent) => {
+          setIsMobile(e.matches)
+        }
+
+        mobileQuery.addEventListener('change', handleMobileChange)
+        
+        return () => {
+          mobileQuery.removeEventListener('change', handleMobileChange)
         }
       }
     }
@@ -100,7 +119,8 @@ export function useStartupBanner(): UseStartupBannerReturn {
     isVisible,
     currentStat,
     handleClose,
-    prefersReducedMotion,
+    prefersReducedMotion: prefersReducedMotion || isMobile,
     wasDismissedBefore,
+    isMobile,
   }
 }

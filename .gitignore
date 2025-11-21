@@ -42,9 +42,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Documentation files (temporary/development)
-REFACTORING_*.md
-*.summary.md
-*.notes.md
+ANALYTICS_INTEGRATION.md
 /docs
 
 # Test files (temporary)

@@ -5,8 +5,8 @@
 
 export const STARTUP_BANNER_CONFIG = {
   // Timing (en milisegundos)
-  SHOW_DELAY: 1000, // Delay inicial para mostrar el banner
-  STATS_ROTATION_INTERVAL: 4000, // Intervalo de rotación de estadísticas
+  SHOW_DELAY: 10, // Delay inicial para mostrar el banner
+  STATS_ROTATION_INTERVAL: 6000, // Intervalo de rotación de estadísticas (aumentado para mobile)
   ANIMATION_DURATION: 12000, // Duración de animaciones (rotación de icono)
 
   // Storage
@@ -16,6 +16,7 @@ export const STARTUP_BANNER_CONFIG = {
   // Comportamiento
   AUTO_HIDE_ON_MOBILE: false, // Si se debe ocultar automáticamente en móvil
   RESPECT_PREFERS_REDUCED_MOTION: true, // Respetar preferencia de movimiento reducido
+  DISABLE_ANIMATIONS_ON_MOBILE: true, // Desabilitar animaciones en mobile para performance
   
   // Feature flags
   ENABLE_FLOATING_PARTICLES: true,
@@ -36,7 +37,9 @@ export const STARTUP_BANNER_CONFIG = {
 
   // Responsive
   SHOW_STATS_ON_DESKTOP: true,
-  SHOW_PARTICLES_ON_MOBILE: false,
+  SHOW_STATS_ON_MOBILE: false, // No mostrar rotación de estadísticas en mobile
+  SHOW_PARTICLES_ON_MOBILE: false, // NUNCA mostrar partículas en mobile
+  MOBILE_BREAKPOINT: 768, // px - md breakpoint
 } as const
 
 /**

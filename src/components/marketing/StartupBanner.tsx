@@ -43,7 +43,7 @@ interface StartupBannerProps {
  */
 export const StartupBanner = memo(
   ({ onClose, className = '', stats: customStats }: StartupBannerProps) => {
-    const { isVisible, currentStat, handleClose, prefersReducedMotion, wasDismissedBefore } =
+    const { isVisible, currentStat, handleClose, prefersReducedMotion, wasDismissedBefore, isMobile } =
       useStartupBanner()
 
     // Usar estadísticas personalizadas o las por defecto
@@ -51,6 +51,9 @@ export const StartupBanner = memo(
 
     // Early return si fue dismissido o no visible
     if (wasDismissedBefore || !isVisible) return null
+
+    // En mobile: reducir animaciones al máximo
+    const shouldReduceMotion = prefersReducedMotion || isMobile
 
     // Manejar cierre con callback opcional
     const handleCloseClick = () => {
@@ -77,14 +80,17 @@ export const StartupBanner = memo(
         className={`relative overflow-hidden bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-700 dark:via-teal-700 dark:to-cyan-700 ${className}`}
         role="region"
         aria-label={STARTUP_BANNER_CONFIG.ARIA_LABELS.BANNER_CONTAINER}
+        style={{ willChange: 'transform' }}
       >
-        {/* Animated background pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        </div>
+        {/* Animated background pattern - Solo desktop */}
+        {!isMobile && (
+          <div className="absolute inset-0 opacity-10">
+            <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+          </div>
+        )}
 
-        {/* Floating particles - Optimizado */}
-        {STARTUP_BANNER_CONFIG.ENABLE_FLOATING_PARTICLES && !prefersReducedMotion && (
+        {/* Floating particles - Optimizado: NUNCA en mobile */}
+        {STARTUP_BANNER_CONFIG.ENABLE_FLOATING_PARTICLES && !prefersReducedMotion && !isMobile && (
           <div className="absolute inset-0 overflow-hidden">
             {[...Array(STARTUP_BANNER_CONFIG.PARTICLES_COUNT)].map((_, i) => (
               <motion.div
@@ -113,9 +119,9 @@ export const StartupBanner = memo(
             {/* Left content */}
             <div className="flex items-center gap-4 flex-1">
               <motion.div
-                animate={prefersReducedMotion ? { rotate: 0 } : { rotate: 360 }}
+                animate={shouldReduceMotion ? { rotate: 0 } : { rotate: 360 }}
                 transition={
-                  prefersReducedMotion
+                  shouldReduceMotion
                     ? { duration: 0 }
                     : {
                         duration: STARTUP_BANNER_CONFIG.ANIMATION_DURATION / 1000,
@@ -135,7 +141,7 @@ export const StartupBanner = memo(
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={
-                    prefersReducedMotion
+                    shouldReduceMotion
                       ? { duration: 0 }
                       : { delay: 0.2, duration: 0.5 }
                   }
@@ -147,7 +153,7 @@ export const StartupBanner = memo(
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={
-                    prefersReducedMotion
+                    shouldReduceMotion
                       ? { duration: 0 }
                       : { delay: 0.4, duration: 0.5 }
                   }
@@ -166,7 +172,7 @@ export const StartupBanner = memo(
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={
-                    prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }
+                    shouldReduceMotion ? { duration: 0 } : { duration: 0.3 }
                   }
                   className="bg-white/30 backdrop-blur-sm rounded-lg px-4 py-2 min-w-[160px] border border-white/20"
                   role="status"
@@ -198,7 +204,7 @@ export const StartupBanner = memo(
                 >
                   <motion.div
                     className="flex items-center gap-2"
-                    whileHover={prefersReducedMotion ? {} : { x: 2 }}
+                    whileHover={shouldReduceMotion ? {} : { x: 2 }}
                   >
                     <Zap className="w-4 h-4" />
                     Empezar Gratis
@@ -220,34 +226,36 @@ export const StartupBanner = memo(
           </div>
 
           {/* Mobile stats */}
-          <div className="md:hidden mt-4">
-            <div className="flex justify-center">
-              <motion.div
-                key={`stat-mobile-${currentStat}`}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={
-                  prefersReducedMotion ? { duration: 0 } : { duration: 0.3 }
-                }
-                className="bg-white/30 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20"
-                role="status"
-                aria-live="polite"
-                aria-label={stats[currentStat]?.ariaLabel}
-              >
-                <div className="flex items-center justify-center gap-2 text-white">
-                  {getIcon(stats[currentStat]?.icon || '')}
-                  <div className="text-center">
-                    <span className="font-bold text-lg drop-shadow-sm">
-                      {stats[currentStat]?.number}
-                    </span>
-                    <span className="text-sm opacity-95 ml-2 drop-shadow-sm">
-                      {stats[currentStat]?.label}
-                    </span>
+          {STARTUP_BANNER_CONFIG.SHOW_STATS_ON_MOBILE && (
+            <div className="md:hidden mt-4">
+              <div className="flex justify-center">
+                <motion.div
+                  key={`stat-mobile-${currentStat}`}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={
+                    shouldReduceMotion ? { duration: 0 } : { duration: 0.25 }
+                  }
+                  className="bg-white/30 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20"
+                  role="status"
+                  aria-live="polite"
+                  aria-label={stats[currentStat]?.ariaLabel}
+                >
+                  <div className="flex items-center justify-center gap-2 text-white">
+                    {getIcon(stats[currentStat]?.icon || '')}
+                    <div className="text-center">
+                      <span className="font-bold text-lg drop-shadow-sm">
+                        {stats[currentStat]?.number}
+                      </span>
+                      <span className="text-sm opacity-95 ml-2 drop-shadow-sm">
+                        {stats[currentStat]?.label}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </motion.div>
     )
