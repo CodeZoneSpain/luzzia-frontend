@@ -4,7 +4,6 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { CookieBanner } from "@/components/legal/CookieBanner";
 import { ElectricityDataProvider } from "@/hooks/useElectricityDataContext";
 import HeaderV2 from "@/components/layout/HeaderV2";
-import Link from "next/link";
 
 export const metadata: Metadata = {
   title: {
