@@ -16,7 +16,7 @@ export default function Hero({ stats, isLoading = false }: HeroProps) {
   return (
     <main aria-labelledby="hero-title">
       {/* Hero Section */}
-      <header className="text-center mb-12">
+      <header className="text-center mb-20">
           <h1 
             id="hero-title"
             className="text-5xl font-bold tracking-tight text-white mb-4 leading-tight"
@@ -40,7 +40,7 @@ export default function Hero({ stats, isLoading = false }: HeroProps) {
       </header>
       
       {/* Price Cards Section */}
-      <section aria-labelledby="price-section-title">
+      <section className='mb-20' aria-labelledby="price-section-title">
         <h2 id="price-section-title" className="sr-only">
           Información de precios eléctricos en tiempo real
         </h2>
