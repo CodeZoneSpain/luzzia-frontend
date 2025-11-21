@@ -159,7 +159,7 @@ export function PriceChart() {
 	const getDescription = () => {
 		switch (activePeriod) {
 			case "hoy":
-				return "Datos en tiempo real - OMIE";
+				return "Datos en tiempo real - REE";
 			case "semana":
 				return "Promedio por dia de la semana actual";
 			case "mes":

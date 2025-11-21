@@ -22,17 +22,16 @@ export default function LazyPriceChart() {
   // Cargar datos solo cuando entra en viewport
   useEffect(() => {
     if (inView && todayPrices.length === 0 && !isLoading && !lastUpdated) {
-      console.log('🎯 Loading chart data - component in view')
       loadToday()
     }
   }, [inView, todayPrices.length, isLoading, lastUpdated, loadToday])
 
   return (
-    <div ref={ref} className="min-h-[400px]">
+    <div ref={ref}>
       {inView ? (
         <PriceChart />
       ) : (
-        <div className="h-[400px] flex items-center justify-center bg-slate-800/50 rounded-lg border border-slate-700/50">
+        <div className="flex items-center justify-center bg-slate-800/50 rounded-lg border border-slate-700/50">
           <div className="text-center">
             <div className="w-8 h-8 border-2 border-slate-400 border-t-transparent rounded-full animate-spin mx-auto mb-2"></div>
             <p className="text-slate-400 text-sm">Preparando gráfico...</p>
