@@ -1,6 +1,7 @@
 "use client";
 import { useInView } from '@/hooks/useInView';
 import { SubscribeForm } from '@/components/forms/SubscribeForm';
+import { GradientTextStyles } from '@/components/ui/gradientText';
 
 export default function DashboardContentClient() {
   const { ref: subscribeRef, inView: subscribeInView } = useInView({
@@ -14,7 +15,7 @@ export default function DashboardContentClient() {
       <div className="absolute inset-0 rounded-3xl"></div>
       <div className="relative z-10 text-center space-y-8">
         <div className="space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">
+          <h2 className={`${GradientTextStyles} text-4xl md:text-5xl font-bold`}>
             Suscríbete
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto">
