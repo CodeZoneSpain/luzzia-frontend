@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { CookieBanner } from "@/components/legal/CookieBanner";
 import { ElectricityDataProvider } from "@/hooks/useElectricityDataContext";
 import HeaderV2 from "@/components/layout/HeaderV2";
+import ClientStartupBanner from "@/components/marketing/ClientStartupBanner";
 
 export const metadata: Metadata = {
   title: {
@@ -113,6 +114,9 @@ export default function RootLayout({
               role="application"
               aria-label="Aplicación de precios eléctricos Luzzia"
             >
+              {/* Startup Banner - Mostrar primero antes del header */}
+              <ClientStartupBanner />
+
               {/* Site Header */}
               <HeaderV2 />
 
