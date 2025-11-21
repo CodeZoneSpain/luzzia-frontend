@@ -98,7 +98,7 @@ export function SubscribeForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto">
+    <div className="w-full max-w-md mx-auto md:max-w-2xl">
       {/* Confetti Effect */}
       {showConfetti && (
         <div className="fixed inset-0 pointer-events-none z-50">
@@ -114,7 +114,7 @@ export function SubscribeForm() {
             <Mail className="w-6 h-6 text-white" />
           </div>
           <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-            Únete a +1,000 usuarios
+            Únete a más de 1,000 usuarios
           </h3>
           <p className="text-slate-400 text-sm">
             Recibe alertas cuando la electricidad esté más barata

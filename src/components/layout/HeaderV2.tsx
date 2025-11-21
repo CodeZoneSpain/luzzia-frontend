@@ -82,10 +82,11 @@ export default function HeaderV2() {
                   src="/logo.webp"
                   alt="Luzzia Logo"
                   width={160}
-                  height={160}
-                  className="inline-block dark:brightness-110"
+                  height={40}
+                  loading="eager"
+                  // className="inline-block dark:brightness-110"
                   priority
-                  quality={75}
+                  // quality={75}
                 />
               </Link>
               <Button

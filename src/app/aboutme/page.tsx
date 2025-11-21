@@ -1,4 +1,5 @@
 import { GradientTextStyles } from '@/components/ui/gradientText'
+import { CalculatorIcon, PiggyBankIcon, ZapIcon } from 'lucide-react'
 import { Metadata } from 'next'
 import Link from 'next/link'
 
@@ -35,17 +36,25 @@ export default function AboutMePage() {
             El Problema que <span className="text-red-400">Todos</span> Enfrentamos
           </h2>
           <div className="space-y-4 text-lg text-slate-300">
-            <p>🔥 Los precios de la electricidad cambian cada hora, pero nadie te avisa</p>
-            <p>💸 Usas electrodomésticos en las horas más caras sin saberlo</p>
-            <p>😵 Tu factura de luz sigue subiendo mes tras mes</p>
-            <p>🤷‍♀️ No sabes cuándo es el mejor momento para lavar, cocinar o cargar dispositivos</p>
+            <p>🔥 Los precios de la luz cambian cada hora y pocos saben cuándo es más barata la electricidad</p>
+            <p>💸 Usas tus electrodomésticos en las horas más caras sin darte cuenta</p>
+            <p>😵 Tu factura eléctrica aumenta mes tras mes</p>
+            <p>🤷‍♀️ No sabes a qué hora es más barato usar la lavadora o cargar el coche eléctrico</p>
           </div>
         </div>
         <div className="bg-gradient-to-br from-blue-600/20 to-purple-600/20 p-8 rounded-2xl border border-blue-500/30">
           <h3 className="text-2xl font-bold text-white mb-4">La Solución: Luzzia</h3>
           <p className="text-slate-300 text-lg leading-relaxed">
-            Imagínate recibir una notificación que te dice: <strong className="text-blue-400">"¡Ahora es el mejor momento para lavar la ropa!"</strong>
-            O saber que si esperas 2 horas, podrías ahorrar €3 en tu próxima carga de coche eléctrico.
+            Analiza los precios de la electricidad en España y te envía alertas automáticas con el mejor momento para consumir:
+          </p>
+          <p className="font-bold leading-relaxed mt-4">
+            "¡Ahora es la hora más barata para poner la lavadora!" o “¡Espera 2 horas para ahorrar un 25% en tu carga eléctrica!”.
+          </p>
+          <p className="font-bold leading-relaxed mt-4">
+            Así puedes reducir tu factura de luz hasta un 30% sin cambiar tu estilo de vida.
+          </p>
+          <p className="font-bold leading-relaxed mt-4">
+            Luzzia analiza los precios de la electricidad en España y te envía alertas automáticas con el mejor momento para consumir
           </p>
         </div>
       </section>
@@ -53,29 +62,34 @@ export default function AboutMePage() {
       {/* Características Principales */}
       <section className="mb-20">
         <h2 className="text-4xl font-bold text-white text-center mb-12">
-          ¿Cómo Te Ayuda <span className="text-blue-400">Luzzia</span>?
+          ¿Cómo <span className={`${GradientTextStyles}`}>Luzzia</span> te ayuda a ahorrar en tu factura eléctrica?
         </h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid auto-rows-fr md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             {
-              icon: "⚡",
+              icon: <ZapIcon className="w-7 h-7 text-emerald-500" />,
               title: "Precios en Tiempo Real",
-              description: "Conoce el precio exacto de la electricidad cada hora del día. Datos directos del mercado eléctrico español."
+              description: "Consulta el precio de la electricidad hoy por horas con datos oficiales de REE. Descubre en qué momento la luz es más barata y paga menos por cada kWh."
             },
             {
-              icon: "📱",
+              icon: <CalculatorIcon className="w-7 h-7 text-emerald-500" />,
               title: "Alertas Inteligentes",
-              description: "Recibe notificaciones cuando los precios están bajos. ¡Perfecto para programar electrodomésticos!"
+              description: "Recibe notificaciones cuando el precio de la luz baja. Programa tus electrodomésticos y reduce tu consumo eléctrico sin esfuerzo a la hora justa."
             },
             {
-              icon: "💰",
+              icon: <PiggyBankIcon className="w-7 h-7 text-emerald-500" />,
               title: "Calculadora de Ahorro",
-              description: "Ve exactamente cuánto puedes ahorrar cambiando tus hábitos de consumo."
+              description: "Comprueba cuánto podrías reducir tu factura eléctrica cambiando tus hábitos según el precio del kWh hoy. Ahorra hasta un 30% fácilmente."
             },
 
           ].map((feature, index) => (
-            <div key={index} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300">
-              <div className="text-4xl mb-4">{feature.icon}</div>
+            <div key={`feature-how-${index}`}
+              className="flex flex-col items-center p-6 justify-between text-center bg-slate-800/50 rounded-xl border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300"
+              aria-label={typeof feature.title === 'string' ? feature.title : undefined}
+            >
+              <div className="flex items-center justify-center w-14 h-14 bg-slate-800 rounded-full mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                {feature.icon}
+              </div>
               <h3 className="text-xl font-bold text-white mb-3">{feature.title}</h3>
               <p className="text-slate-300 leading-relaxed">{feature.description}</p>
             </div>
@@ -92,28 +106,25 @@ export default function AboutMePage() {
           <div className="bg-gradient-to-br from-green-600/20 to-emerald-600/20 p-8 rounded-2xl border border-green-500/30">
             <h3 className="text-2xl font-bold text-white mb-4">👨‍👩‍👧‍👦 Familia García</h3>
             <p className="text-slate-300 mb-4">
-              Programaron su lavadora y lavavajillas para funcionar durante las horas más baratas.
+              Usaron Luzzia para programar lavadora y lavavajillas en las horas más baratas de luz.
             </p>
-            <div className="text-3xl font-bold text-green-400">-28% en su factura</div>
-            <div className="text-sm text-slate-400 mt-2">Ahorro: €45/mes</div>
+            <div className="text-2xl font-bold text-green-400">Ahorro: -28% en su factura eléctrica</div>
           </div>
 
           <div className="bg-gradient-to-br from-blue-600/20 to-cyan-600/20 p-8 rounded-2xl border border-blue-500/30">
             <h3 className="text-2xl font-bold text-white mb-4">🚗 Carlos (Coche Eléctrico)</h3>
             <p className="text-slate-300 mb-4">
-              Carga su Tesla solo durante las horas de precio mínimo que Luzzia le indica.
+              Carga su vehículo solo cuando el precio de la electricidad por kWh está más bajo.
             </p>
-            <div className="text-3xl font-bold text-blue-400">-35% en carga</div>
-            <div className="text-sm text-slate-400 mt-2">Ahorro: €67/mes</div>
+            <div className="text-2xl font-bold text-blue-400">Ahorro: -35% en consumo eléctrico.</div>
           </div>
 
           <div className="bg-gradient-to-br from-purple-600/20 to-pink-600/20 p-8 rounded-2xl border border-purple-500/30">
             <h3 className="text-2xl font-bold text-white mb-4">🏢 Pyme Innovadora</h3>
             <p className="text-slate-300 mb-4">
-              Ajustaron los horarios de equipos no críticos basándose en los datos de Luzzia.
+              Ajustó los horarios de sus equipos según los precios de la luz por horas.
             </p>
-            <div className="text-3xl font-bold text-purple-400">-22% en costes</div>
-            <div className="text-sm text-slate-400 mt-2">Ahorro: €234/mes</div>
+            <div className="text-2xl font-bold text-purple-400">Ahorro: -22% en costes energéticos.</div>
           </div>
         </div>
       </section>
@@ -124,10 +135,11 @@ export default function AboutMePage() {
           <h2 className="text-4xl font-bold text-white mb-6">
             Nuestra <span className="text-blue-400">Visión</span>
           </h2>
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto leading-relaxed mb-8">
-            Creemos en un futuro donde cada hogar español tenga el poder de controlar su gasto eléctrico.
-            Donde la tecnología trabaje para ti, no contra tu bolsillo. Donde ahorrar energía sea tan
-            fácil como recibir una notificación.
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-4">
+            Creemos en un futuro donde cada hogar español pueda controlar su gasto eléctrico con datos en tiempo real.
+          </p>
+          <p className="text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-8">
+            Donde la tecnología ayude a reducir la factura de la luz y el ahorro energético sea tan simple como recibir una alerta.
           </p>
           <div className="grid md:grid-cols-3 gap-6 mt-8">
             <div className="text-center">
@@ -149,10 +161,10 @@ export default function AboutMePage() {
       {/* Call to Action */}
       <section className="text-center">
         <h2 className="text-4xl font-bold text-white mb-6">
-          ¿Listo para <span className="text-green-400">Comenzar a Ahorrar</span>?
+          ¿Listo para empezar a<span className="text-green-400"> Ahorrar luz hoy</span>?
         </h2>
-        <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-          Únete a miles de españoles que ya están reduciendo su factura eléctrica con Luzzia.
+        <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto">
+          Únete gratis a miles de personas que ya consultan el precio de la electricidad por horas y reducen su factura eléctrica con Luzzia
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <Link

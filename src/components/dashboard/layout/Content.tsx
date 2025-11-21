@@ -16,7 +16,7 @@ export function DashboardContent() {
 
   return (
     // <div className=" bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
-    <div className="container min-h-screen mx-auto p-4">
+    <div className="container min-h-screen mx-auto p-2 md:p-4 md:mt-8">
       {/* Hero Section - Siempre visible, datos opcionales */}
       <Hero stats={stats} />
 
@@ -24,7 +24,7 @@ export function DashboardContent() {
       <ContentCard />
 
       {/* Price Chart Section - Card estilo ¿Qué es Luzzia? */}
-      <section className=" mb-20">
+      <section className="mb-20">
         <div className="text-center mb-10 w-[90%] md:w-full mx-auto">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-full mb-4">
             <TrendingUp className="w-8 h-8 text-white" />

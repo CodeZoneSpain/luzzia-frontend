@@ -17,7 +17,7 @@ export const Loading: ReactFC<LoadingProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-gray-500 flex items-center justify-center">
+    <div className="min-h-screen  flex items-center justify-center">
       <div className="text-center">
         <div className="flex justify-center mb-4">
           <Zap className={`${sizes[size]} text-primary-500 animate-pulse`} />
@@ -27,7 +27,7 @@ export const Loading: ReactFC<LoadingProps> = ({
           role="status"
           aria-label="loading"
         />
-        <p className="mt-4 text-gray-500">{message}</p>
+        <p className="mt-4">{message}</p>
       </div>
     </div>
   )

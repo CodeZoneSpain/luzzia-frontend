@@ -19,7 +19,7 @@ export default function Hero({ stats, isLoading = false }: HeroProps) {
       <header className="text-center mb-20">
           <h1 
             id="hero-title"
-            className="text-5xl font-bold tracking-tight text-white mb-4 leading-tight"
+            className="text-4xl font-bold md:text-5xl tracking-tight text-white mb-8 leading-tight"
           >
             <span className={`${GradientTextStyles}`}>
               Precio&nbsp;
@@ -32,7 +32,7 @@ export default function Hero({ stats, isLoading = false }: HeroProps) {
             </span> 
           </h1>
         <p 
-          className="text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
+          className="text-md md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed"
           role="doc-subtitle"
         >
           Consulta el precio de la electricidad por horas y descubre cuándo es más barata la luz <span className={`text-[#03faae] font-bold`}>para ahorrar hasta un 30% </span> en tu factura eléctrica.
