@@ -65,8 +65,8 @@ export function PriceCardsClient({ serverData, dailyPrices }: PriceCardsClientPr
     <section className="space-y-8">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {cardsData.map((card) => {
-          const priceColor = card.id === 'lowest' ? "text-emerald-500" : card.id === 'highest' ? "text-red-500" : "text-sky-400";
-          const badgeColor = card.id === 'lowest' ? "bg-emerald-500" : card.id === 'highest' ? "bg-red-500" : "bg-sky-400";
+          const priceColor = card.id === 'lowest' ? "text-emerald-400" : card.id === 'highest' ? "text-red-400" : "text-sky-400";
+          const badgeColor = card.id === 'lowest' ? "bg-emerald-700" : card.id === 'highest' ? "bg-red-700" : "bg-sky-700";
           const hourText = card.id === 'current' ? `${currentHour.toString().padStart(2, '0')}:00` : card.subtitle.split(': ')[1];
           
           return (
@@ -74,7 +74,7 @@ export function PriceCardsClient({ serverData, dailyPrices }: PriceCardsClientPr
               key={card.id}
               className={`
                 relative overflow-hidden transition-all duration-300 
-                hover:scale-[1.02] hover:shadow-2xl
+                hover: hover:border-blue-500/50 hover:scale-[1.01] hover:shadow-2xl
                 ${bgColor} ${borderColor} rounded-2xl
                 focus-within:ring-2 focus-within:ring-white focus-within:ring-offset-2
               `}
@@ -82,7 +82,10 @@ export function PriceCardsClient({ serverData, dailyPrices }: PriceCardsClientPr
               aria-labelledby={`price-card-${card.id}-title`}
             >
               {/* Time Badge */}
-              <div className={`absolute top-4 right-4 ${badgeColor} text-white font-bold rounded px-2 py-1 text-md z-10`}>
+              <div
+                className={`absolute top-4 right-4 ${badgeColor} text-white font-bold rounded px-2 py-1 text-md z-10 shadow-lg ring-1 ring-white/20`}
+                aria-label={`${card.title} - hora ${hourText}`}
+              >
                 {hourText}
               </div>
 
@@ -104,14 +107,14 @@ export function PriceCardsClient({ serverData, dailyPrices }: PriceCardsClientPr
 
                 {/* Subtitle */}
                 {card.subtitle && (
-                  <div className="text-xs text-slate-400">
-                    {card.subtitle.split(': ')[0]}: <span className="text-slate-300">{hourText}</span>
+                  <div className="font-semibold text-slate-200">
+                    {card.subtitle.split(': ')[0]}: <span className="text-slate-200">{hourText}</span>
                   </div>
                 )}
 
                 {/* Percent */}
                 {card.percent && (
-                  <div className="text-xs font-semibold text-slate-500">
+                  <div className="text-slate-400">
                     {card.percent}
                   </div>
                 )}

@@ -35,7 +35,7 @@ export const ContentCard = () => {
                 {DATA.map((feature, idx) => (
                     <div
                         key={`feature-title-${idx}`}
-                        className="group flex flex-col items-center justify-center text-center bg-slate-900/70 p-8 rounded-2xl border-[1px] border-violet-200 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                        className="group flex flex-col items-center justify-center text-center bg-slate-900/70 p-8 rounded-2xl border border-slate-700/50 hover:border-blue-500/50 hover:scale-[1.01] hover:shadow-2xl transition-all duration-300"
                         // className="group flex flex-col items-center justify-center text-center bg-slate-900/70 p-8 rounded-2xl border border-slate-800 shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
                         tabIndex={0}
                         aria-label={typeof feature.title === 'string' ? feature.title : undefined}
