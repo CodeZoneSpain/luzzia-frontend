@@ -13,16 +13,29 @@ export const metadata: Metadata = {
   },
   description: 'Descubre cuándo es más barato usar tus electrodomésticos con datos en tiempo real del mercado eléctrico español. Reduce tu factura hasta un 30% con alertas inteligentes.',
   keywords: [
-    'precio luz tiempo real',
-    'ahorro factura eléctrica',
-    'mercado eléctrico español',
-    'precios electricidad hora',
-    'PVPC',
-    'tarifa eléctrica',
-    'consumo inteligente',
-    'ahorro energético',
-    'Red Eléctrica España',
-    'electricidad barata España'
+    'Precio luz hoy',
+    'Luz',
+    'Electricidad',
+    'Precio electricidad por horas',
+    'Precio luz por horas',
+    'precio kWh hoy',
+    'tarifa luz por horas',
+    'cuándo es más barata la luz',
+    'mejor hora para poner la lavadora',
+    'precio electricidad España',
+    'cómo ahorrar en la factura de la luz',
+    'reducir factura eléctrica',
+    'consejos para ahorrar luz'
+    // 'precios electricidad por hora',
+    // 'precio luz tiempo real',
+    // 'ahorro factura eléctrica',
+    // 'mercado eléctrico español',
+    // 'PVPC',
+    // 'tarifa eléctrica',
+    // 'consumo inteligente',
+    // 'ahorro energético',
+    // 'Red Eléctrica España',
+    // 'electricidad barata España'
   ],
   authors: [{ name: 'Jander Gomez' }],
   creator: 'Jander',
@@ -97,23 +110,23 @@ export default function RootLayout({
           <ElectricityDataProvider>
             {/* Skip to main content link for keyboard navigation */}
             <Link
-              href="#main-content" 
+              href="#main-content"
               className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary text-primary-foreground px-4 py-2 rounded-md z-50 transition-all"
             >
               Saltar al contenido principal
             </Link>
-            
+
             {/* Main Application Structure */}
-            <div 
+            <div
               className="bg-gradient-to-br from-background via-background/95 to-background dark:from-slate-950 dark:via-slate-900 dark:to-slate-800"
               role="application"
               aria-label="Aplicación de precios eléctricos Luzzia"
             >
               {/* Site Header */}
               <HeaderV2 />
-              
+
               {/* Main Content Area */}
-              <main 
+              <main
                 id="main-content"
                 className="container mx-auto p-4 min-h-screen"
                 role="main"
@@ -122,9 +135,9 @@ export default function RootLayout({
               >
                 {children}
               </main>
-              
+
               {/* Footer placeholder for future use */}
-              <footer 
+              <footer
                 className="sr-only"
                 role="contentinfo"
                 aria-label="Información del sitio"
@@ -132,7 +145,7 @@ export default function RootLayout({
                 <p>© 2024 Luzzia - Ahorro energético inteligente</p>
               </footer>
             </div>
-            
+
             {/* RGPD Cookie Banner */}
             <CookieBanner />
           </ElectricityDataProvider>
